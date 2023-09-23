@@ -64,24 +64,24 @@ const EditModal = ({ product, handleClose }) => {
     handleProductChange("quantity", "updatedQuantity")(updatedQuantity);
   };
   const onSubmit = () => {
-    const status = approveStatusUpdate(productState.status, productState);
+    const status = approveStatusUpdate(productState.status?.statusMsg, productState);
     dispatch(
       setUpdatedProduct({
         ...productState,
-        // price:{
-        //   ...productState.price,
-        //   previousPrice: product.price.updatedPrice
-        // },
-        // quantity:{
-        //   ...productState.quantity,
-        //   previousQuantity: product.quantity.updatedQuantity
+        price:{
+          ...productState.price,
+          previousPrice: product.price.updatedPrice
+        },
+        quantity:{
+          ...productState.quantity,
+          previousQuantity: product.quantity.updatedQuantity
           
-        // },
-        // totalPrice:{
-        //   ...productState.totalPrice,
-        //   previousPrice: product.totalPrice.updatedPrice
+        },
+        totalPrice:{
+          ...productState.totalPrice,
+          previousPrice: product.totalPrice.updatedPrice
 
-        // },
+        },
         status: { ...productState.status, statusMsg: status },
       })
     );

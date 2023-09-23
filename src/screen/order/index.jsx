@@ -8,6 +8,7 @@ import OrderListView from "./orderListView";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getOrderDetailsThunk } from "../../store/orders/order.thunk";
+import { isEmpty } from "lodash";
 
 const OrderPage = () => {
   const state = useSelector((state) => state);
@@ -24,7 +25,7 @@ const OrderPage = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (state.orders.orderData) {
+    if (isEmpty(state.orders.orderData)) {
       dispatch(getOrderDetailsThunk);
     }
   }, [state.orders.orderData]);
