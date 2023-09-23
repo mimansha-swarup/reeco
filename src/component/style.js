@@ -30,6 +30,35 @@ export const Box = styled.div`
   margin-top: 2rem;
   border: 1px solid lightgray;
 `;
+export const Img = styled.img`
+  width: ${(props) => props.width || "75px"};
+  height: auto;
+`;
+export const Shimmer = styled.div`
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    #a0a0a040 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+  width: ${(props) => props.width || "50px"};
+  height: ${(props) => props.height || "10px"};
+
+  @keyframes shimmer {
+    0% {
+      background-position: 200% 0;
+    }
+    100% {
+      background-position: -200% 0;
+    }
+  }
+`;
+
+// ----------------Wrappers----------
 
 export const CardWrapper = styled.div`
   display: flex;
@@ -50,9 +79,11 @@ export const CardWrapper = styled.div`
 export const ButtonWrapper = styled.button`
   padding: 0.35rem 1rem;
   background-color: white;
-  border-radius: ${(props) => (props.radius ? props.radius : "4rem")};
+  padding: ${(props) => props.padding || "0.35rem 1rem"};
+  border-radius: ${(props) => props.radius || "4rem"};
   font-weight: 500;
   outline: none;
+  border: none;
   border: none;
   cursor: pointer;
   ${(props) =>
@@ -74,14 +105,37 @@ export const ButtonWrapper = styled.button`
     css`
       color: ${(props) => (props.textColor ? props.textColor : "#1e633f")};
       border: none;
-      background-color: white; // can be inherit too
+      background-color: inherit; // can be inherit too
     `}
+    &:disabled{
+      cursor: not-allowed;
+      color: #999999
+    }
 `;
 export const HeaderWrapper = styled.header`
   background-color: #1e633f;
   padding: 1rem 5rem;
 
-  .white-text {
+  .cart {
+    position: relative;
+    .pill {
+      position: absolute;
+      font-size: 0.5rem;
+      height: 15px;
+      width: 15px;
+      display: flex;
+      border-radius: 100%;
+      background-color: #3dca72;
+      top: 0;
+      right: 0;
+      transform: translate(45%, -45%);
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  .white-text,
+  .cart {
     color: white;
     opacity: 0.9;
   }
@@ -109,8 +163,6 @@ export const TableWrapper = styled.div`
     margin: 1.5rem 0;
   }
 
-
-
   th {
     padding: 8px;
     font-weight: 600;
@@ -133,11 +185,11 @@ export const TableWrapper = styled.div`
     border-radius: 10px;
     color: gray;
   }
-  
+
   td {
     padding: 1rem;
     line-height: 140%;
-    border-bottom: 2px solid lightgray
+    border-bottom: 2px solid lightgray;
   }
 
   /* tr{

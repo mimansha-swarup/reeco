@@ -1,3 +1,4 @@
+import { Empty } from "antd";
 import { TableWrapper } from "./style";
 
 const Table = ({
@@ -6,9 +7,6 @@ const Table = ({
   rowKey,
   type,
   showShadow,
-  handleRowClick,
-  selectedRowIndex,
-  showSelectedRowIndex,
   scroll,
   bgTableColor,
   bgTableHeaderColor,
@@ -72,11 +70,7 @@ const Table = ({
       </table>
     </div>
 
-    {/* {!dataSource?.length && (
-      <div className="empty_Tablewrapper">
-        <Empty />
-      </div>
-    )} */}
+    {!dataSource?.length && <Empty />}
   </TableWrapper>
 );
 
